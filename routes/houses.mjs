@@ -1,3 +1,5 @@
+import express from "express";
+
 let houses = [
   { id: 1, name: "Gryffindor", founder: "Godric Gryffindor" },
   { id: 2, name: "Slytherin", founder: "Salazar Slytherin" },
@@ -5,8 +7,12 @@ let houses = [
   { id: 4, name: "Ravenclaw", founder: "Rowena Ravenclaw" },
 ];
 
-import express from "express";
 const router = express.Router();
+
+// Render houses page
+router.get("/view", (req, res) => {
+  res.render("houses", { houses });
+});
 
 // GET all houses
 router.get("/", (req, res) => {
@@ -24,7 +30,7 @@ router.post("/", (req, res) => {
   const { name, founder } = req.body;
   const newHouse = { id: houses.length + 1, name, founder };
   houses.push(newHouse);
-  res.status(201).json(newHouse);
+  res.redirect("/houses/view");
 });
 
 // PATCH house by ID

@@ -1,12 +1,11 @@
-// Imports
 import express from "express";
-
 import logger from "./middleware/logger.mjs";
 import errorHandler from "./middleware/errorHandler.mjs";
+import requestTimer from "./middleware/requestTimer.mjs";
 
 import charactersRouter from "./routes/characters.mjs";
-import spellsRouter from "./routes/spells.mjs";
 import housesRouter from "./routes/houses.mjs";
+import spellsRouter from "./routes/spells.mjs";
 
 const app = express();
 const PORT = 3000;
@@ -15,32 +14,31 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Custom middleware (logger)
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
+// Serve static files
+app.use(express.static("public"));
 
-// Routes
+// Custom middleware
+app.use(logger);
+app.use(requestTimer);
+
+// Set view engine
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+// Home route
 app.get("/", (req, res) => {
-  res.send("Welcome to the Hogwarts API 🧙‍♂️");
+  res.render("index", { title: "Hogwarts API 🧙‍♂️" });
 });
 
-app.get("/characters", (req, res) => {
-  res.json([
-    { id: 1, name: "Harry Potter", house: "Gryffindor" },
-    { id: 2, name: "Hermione Granger", house: "Gryffindor" },
-    { id: 3, name: "Draco Malfoy", house: "Slytherin" }
-  ]);
-});
+// API & view routes
+app.use("/characters", charactersRouter);
+app.use("/houses", housesRouter);
+app.use("/spells", spellsRouter);
 
 // Global error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
-});
+app.use(errorHandler);
 
-// Server listener
+// Start server
 app.listen(PORT, () => {
   console.log(`⚡ Server running on http://localhost:${PORT}`);
 });

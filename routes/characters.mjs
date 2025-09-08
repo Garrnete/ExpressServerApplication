@@ -1,18 +1,22 @@
+import express from "express";
+
 let characters = [
   { id: 1, name: "Harry Potter", house: "Gryffindor" },
   { id: 2, name: "Hermione Granger", house: "Gryffindor" },
   { id: 3, name: "Draco Malfoy", house: "Slytherin" },
 ];
 
-import express from "express";
 const router = express.Router();
 
-// GET all characters (with optional house filter)
+// Render characters page
+router.get("/view", (req, res) => {
+  res.render("characters", { characters });
+});
+
+// GET all characters (optional house filter)
 router.get("/", (req, res) => {
   const { house } = req.query;
-  if (house) {
-    return res.json(characters.filter(c => c.house === house));
-  }
+  if (house) return res.json(characters.filter(c => c.house === house));
   res.json(characters);
 });
 
@@ -27,7 +31,7 @@ router.post("/", (req, res) => {
   const { name, house } = req.body;
   const newChar = { id: characters.length + 1, name, house };
   characters.push(newChar);
-  res.status(201).json(newChar);
+  res.redirect("/characters/view");
 });
 
 // PATCH character by ID

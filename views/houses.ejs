@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hogwarts Houses</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Hogwarts Houses</h1>
+
+  <ul>
+    <% houses.forEach(h => { %>
+      <li><%= h.name %> - Founder: <%= h.founder %></li>
+    <% }) %>
+  </ul>
+
+  <h2>Add a House</h2>
+  <form action="/houses" method="POST">
+    <input type="text" name="name" placeholder="House Name" required>
+    <input type="text" name="founder" placeholder="Founder" required>
+    <button type="submit">Add House</button>
+  </form>
+
+  <a href="/">Back to Home</a>
+</body>
+</html>

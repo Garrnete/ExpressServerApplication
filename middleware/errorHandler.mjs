@@ -1,4 +1,4 @@
 export default function errorHandler(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).json({ error: "OOpppssss Something went wrong!" });
+  res.status(500).json({ error: "Oops! Something went wrong!" });
 }

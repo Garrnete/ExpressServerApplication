@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hogwarts Spells</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Hogwarts Spells</h1>
+
+  <ul>
+    <% spells.forEach(s => { %>
+      <li><%= s.name %> - Type: <%= s.type %></li>
+    <% }) %>
+  </ul>
+
+  <h2>Add a Spell</h2>
+  <form action="/spells" method="POST">
+    <input type="text" name="name" placeholder="Spell Name" required>
+    <input type="text" name="type" placeholder="Type (Charm, Curse, etc.)" required>
+    <button type="submit">Add Spell</button>
+  </form>
+
+  <a href="/">Back to Home</a>
+</body>
+</html>

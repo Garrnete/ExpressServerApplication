@@ -1,11 +1,17 @@
+import express from "express";
+
 let spells = [
   { id: 1, name: "Expelliarmus", type: "Charm" },
   { id: 2, name: "Lumos", type: "Charm" },
   { id: 3, name: "Avada Kedavra", type: "Curse" },
 ];
 
-import express from "express";
 const router = express.Router();
+
+// Render spells page
+router.get("/view", (req, res) => {
+  res.render("spells", { spells });
+});
 
 // GET all spells (optional type filter)
 router.get("/", (req, res) => {
@@ -25,7 +31,7 @@ router.post("/", (req, res) => {
   const { name, type } = req.body;
   const newSpell = { id: spells.length + 1, name, type };
   spells.push(newSpell);
-  res.status(201).json(newSpell);
+  res.redirect("/spells/view");
 });
 
 // PATCH spell by ID
