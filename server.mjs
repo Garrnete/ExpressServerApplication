@@ -1,6 +1,13 @@
 // Imports
 import express from "express";
 
+import logger from "./middleware/logger.mjs";
+import errorHandler from "./middleware/errorHandler.mjs";
+
+import charactersRouter from "./routes/characters.mjs";
+import spellsRouter from "./routes/spells.mjs";
+import housesRouter from "./routes/houses.mjs";
+
 const app = express();
 const PORT = 3000;
 
@@ -37,3 +44,5 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`⚡ Server running on http://localhost:${PORT}`);
 });
+
+
