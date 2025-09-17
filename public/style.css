@@ -12,9 +12,11 @@ h1, nav {
   text-align: center;
 }
 
-/* Optional: spacing between nav links */
+/* pacing between nav links */
 nav a {
   margin: 0 1rem;
+  font-size: 1.15rem;        
+  font-weight: bold;                      
 }
 
 html,body{
