@@ -3,7 +3,9 @@ import express from "express";
 let spells = [
   { id: 1, name: "Expelliarmus", type: "Charm" },
   { id: 2, name: "Lumos", type: "Charm" },
-  { id: 3, name: "Avada Kedavra", type: "Curse" },
+  { id: 3, name: "Accio", type: "Charm" },
+  { id: 4, name: "Crucio", type: "Curse" },
+  { id: 5, name: "Avada Kedavra", type: "Curse" },
 ];
 
 const router = express.Router();
@@ -13,7 +15,7 @@ router.get("/view", (req, res) => {
   res.render("spells", { spells });
 });
 
-// GET all spells (optional type filter)
+// GET all spells 
 router.get("/", (req, res) => {
   const { type } = req.query;
   if (type) return res.json(spells.filter(s => s.type === type));
