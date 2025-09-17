@@ -6,6 +6,7 @@ let spells = [
   { id: 3, name: "Accio", type: "Charm" },
   { id: 4, name: "Crucio", type: "Curse" },
   { id: 5, name: "Avada Kedavra", type: "Curse" },
+  { id: 6, name: "Expecto Patronum", type: "Charm" },
 ];
 
 const router = express.Router();
