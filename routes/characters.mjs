@@ -3,7 +3,10 @@ import express from "express";
 let characters = [
   { id: 1, name: "Harry Potter", house: "Gryffindor" },
   { id: 2, name: "Hermione Granger", house: "Gryffindor" },
-  { id: 3, name: "Draco Malfoy", house: "Slytherin" },
+  { id: 3, name: "Ron Weasley", house: "Gryffindor" },
+  { id: 4, name: "Draco Malfoy", house: "Slytherin" },
+  { id: 5, name: "Luna Lovegood", house: "Ravenclaw" },
+  { id: 6, name: "Cedric Diggory", house: "Hufflepuff" },
 ];
 
 const router = express.Router();
