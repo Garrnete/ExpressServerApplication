@@ -27,7 +27,7 @@ app.set("views", "./views");
 
 // Home route
 app.get("/", (req, res) => {
-  res.render("index", { title: "Hogwarts API 🧙‍♂️" });
+  res.render("index", { title: "🧙‍♂️🪄Welcome to Hogwarts! 🧙‍♂️🪄" });
 });
 
 // API & view routes
